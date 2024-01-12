@@ -22,6 +22,7 @@ def get_year_and_month(dataframe):
     # Add new features 'yr' and 'mnth
     df['yr'] = df['dteday'].dt.year
     df['mnth'] = df['dteday'].dt.month_name()
+    df['dteday'] = df['dteday'].astype(str)
     return df
 
 
@@ -34,11 +35,9 @@ def load_dataset(*, file_name: str) -> pd.DataFrame:
     # transformed = pre_pipeline_preparation(data_frame=dataframe)
     transformed = get_year_and_month(dataframe)
     # print(f"Transformed---\n{transformed['yr'].values.tolist()}")
-    print(f"Transformed---\n{type(transformed['yr'])}")
-
-
+    # print(f"Transformed---\n{type(transformed['yr'])}")
     # print(f"Transformed---\n{transformed['mnth'].isna().sum()}")
-    print(f"Type of transformed data\n{type(transformed)}")
+    # print(f"Type of transformed data\n{type(transformed)}")
     return transformed
 
 

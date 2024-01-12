@@ -138,7 +138,8 @@ class WeekdayImputer(BaseEstimator, TransformerMixin):
 
   def transform(self,X:pd.DataFrame)->pd.DataFrame:
     df = X.copy()
+    df['dteday'] = pd.to_datetime(df['dteday'], format='%Y-%m-%d')
     self.wkday_nullindex = X[X[self.variable].isnull() == True].index
     df.loc[self.wkday_nullindex, self.variable] = df.loc[self.wkday_nullindex, 'dteday'].dt.day_name().apply(lambda x: x[:3])
-    print(df[self.variable].isna().sum())
+    # print(df[self.variable].isna().sum())
     return df

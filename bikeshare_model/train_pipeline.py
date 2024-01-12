@@ -21,9 +21,9 @@ def run_training() -> None:
     # read training data
     data = load_dataset(file_name=config.app_config.training_data_file)
     # print(data.info())
-    print(f"Before training info\n-->{data.head()}")
-    print(f"Type of data before training\n{type(data)}")
-    print(f"Shape of data before training\n{data.shape}")
+    # print(f"Before training info\n-->{data.head()}")
+    # print(f"Type of data before training\n{type(data)}")
+    # print(f"Shape of data before training\n{data.shape}")
 
     # divide train and test
     X_train, X_test, y_train, y_test = train_test_split(
@@ -38,7 +38,7 @@ def run_training() -> None:
     # Pipeline fitting
     bikeCountPipeline.fit(X_train,y_train)
     print("------pipeline has been trained------------")
-    print(X_test.head(2))
+    # print(X_test.head(2))
     y_pred = bikeCountPipeline.predict(X_test)
     print("R2 score:", r2_score(y_test, y_pred))
     print("Mean squared error:", mean_squared_error(y_test, y_pred))
