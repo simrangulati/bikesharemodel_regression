@@ -1,5 +1,6 @@
 import sys
 from pathlib import Path
+
 file = Path(__file__).resolve()
 parent, root = file.parent, file.parents[1]
 sys.path.append(str(root))
@@ -9,11 +10,11 @@ from sklearn.model_selection import train_test_split
 from sklearn.metrics import mean_squared_error, r2_score
 
 from bikeshare_model.config.core import config
-from bikeshare_model.pipeline import bikeCountPipeline #, titanic_pipe
+from bikeshare_model.pipeline import bikeCountPipeline  # , titanic_pipe
 from bikeshare_model.processing.data_manager import load_dataset, save_pipeline
 
+
 def run_training() -> None:
-    
     """
     Train the model.
     """
@@ -36,7 +37,7 @@ def run_training() -> None:
     )
 
     # Pipeline fitting
-    bikeCountPipeline.fit(X_train,y_train)
+    bikeCountPipeline.fit(X_train, y_train)
     print("------pipeline has been trained------------")
     # print(X_test.head(2))
     y_pred = bikeCountPipeline.predict(X_test)
@@ -45,8 +46,9 @@ def run_training() -> None:
     # print("Accuracy(in %):", accuracy_score(y_test, y_pred)*100)
 
     # persist trained model
-    save_pipeline(pipeline_to_persist= bikeCountPipeline)
+    save_pipeline(pipeline_to_persist=bikeCountPipeline)
     # printing the score
-    
+
+
 if __name__ == "__main__":
     run_training()

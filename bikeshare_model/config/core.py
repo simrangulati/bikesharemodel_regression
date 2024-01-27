@@ -1,12 +1,13 @@
 # Path setup, and access the config.yml file, datasets folder & trained models
 import sys
 from pathlib import Path
+
 file = Path(__file__).resolve()
 parent, root = file.parent, file.parents[1]
 sys.path.append(str(root))
 
-from typing import Dict, List ,Union
-from pydantic import BaseModel , validator
+from typing import Dict, List, Union
+from pydantic import BaseModel, validator
 from strictyaml import YAML, load
 
 import bikeshare_model
@@ -14,10 +15,10 @@ import bikeshare_model
 # Project Directories
 PACKAGE_ROOT = Path(bikeshare_model.__file__).resolve().parent
 print(PACKAGE_ROOT)
-#print(PACKAGE_ROOT)
+# print(PACKAGE_ROOT)
 ROOT = PACKAGE_ROOT.parent
 CONFIG_FILE_PATH = PACKAGE_ROOT / "config.yml"
-#print(CONFIG_FILE_PATH)
+# print(CONFIG_FILE_PATH)
 
 DATASET_DIR = PACKAGE_ROOT / "datasets"
 TRAINED_MODEL_DIR = PACKAGE_ROOT / "trained_models"
@@ -40,30 +41,29 @@ class ModelConfig(BaseModel):
     training and feature engineering.
     """
 
-    target: str # type of column name
+    target: str  # type of column name
     features: List[str]
 
-    weekday_var:str
-    weathersit_var:str
-    yr_var:str
-    mnth_var:str
-    season_var:str
+    weekday_var: str
+    weathersit_var: str
+    yr_var: str
+    mnth_var: str
+    season_var: str
     holiday_var: str
-    workingday_var : str
-    hr_var : str
-    hum_var : str
-    windspeed_var : str
+    workingday_var: str
+    hr_var: str
+    hum_var: str
+    windspeed_var: str
 
+    yr_mappings: Dict[int, int]
+    mnth_mappings: Dict[str, int]
+    season_mappings: Dict[str, int]
+    holiday_mappings: Dict[str, int]
+    workingday_mappings: Dict[str, int]
+    hr_mappings: Dict[str, int]
+    weathersit_mappings: Dict[str, int]
 
-    yr_mappings:Dict[int,int]
-    mnth_mappings:Dict[str,int]
-    season_mappings:Dict[str,int]
-    holiday_mappings:Dict[str,int]
-    workingday_mappings:Dict[str,int]
-    hr_mappings:Dict[str,int]
-    weathersit_mappings:Dict[str,int]
-
-    test_size:float
+    test_size: float
     random_state: int
     n_estimators: int
     max_depth: int

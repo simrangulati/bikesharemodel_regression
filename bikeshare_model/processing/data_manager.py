@@ -1,5 +1,6 @@
 import sys
 from pathlib import Path
+
 file = Path(__file__).resolve()
 parent, root = file.parent, file.parents[1]
 sys.path.append(str(root))
@@ -14,21 +15,21 @@ from bikeshare_model import __version__ as _version
 from bikeshare_model.config.core import DATASET_DIR, TRAINED_MODEL_DIR, config
 
 
-
 def get_year_and_month(dataframe):
     df = dataframe.copy()
     # convert 'dteday' column to Datetime datatype
-    df['dteday'] = pd.to_datetime(df['dteday'], format='%Y-%m-%d')
+    df["dteday"] = pd.to_datetime(df["dteday"], format="%Y-%m-%d")
     # Add new features 'yr' and 'mnth
-    df['yr'] = df['dteday'].dt.year
-    df['mnth'] = df['dteday'].dt.month_name()
-    df['dteday'] = df['dteday'].astype(str)
+    df["yr"] = df["dteday"].dt.year
+    df["mnth"] = df["dteday"].dt.month_name()
+    df["dteday"] = df["dteday"].astype(str)
     return df
 
 
 def _load_raw_dataset(*, file_name: str) -> pd.DataFrame:
     dataframe = pd.read_csv(Path(f"{DATASET_DIR}/{file_name}"))
     return dataframe
+
 
 def load_dataset(*, file_name: str) -> pd.DataFrame:
     dataframe = pd.read_csv(Path(f"{DATASET_DIR}/{file_name}"))

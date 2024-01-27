@@ -1,5 +1,6 @@
 import sys
 from pathlib import Path
+
 file = Path(__file__).resolve()
 parent, root = file.parent, file.parents[1]
 sys.path.append(str(root))
@@ -32,22 +33,19 @@ def validate_inputs(*, input_df: pd.DataFrame) -> Tuple[pd.DataFrame, Optional[d
 
 
 class DataInputSchema(BaseModel):
-    dteday:Optional[str]
-    season:Optional[str]
-    hr : Optional[str]
-    holiday : Optional[str]
-    weekday : Optional[str]
-    workingday : Optional[str]
-    weathersit : Optional[str]
-    temp : Optional[float]
-    atemp : Optional[float]
-    hum : Optional[float]
-    windspeed : Optional[float]
-    casual:Optional[int]
-    registered:Optional[int]
-
-
-
+    dteday: Optional[str]
+    season: Optional[str]
+    hr: Optional[str]
+    holiday: Optional[str]
+    weekday: Optional[str]
+    workingday: Optional[str]
+    weathersit: Optional[str]
+    temp: Optional[float]
+    atemp: Optional[float]
+    hum: Optional[float]
+    windspeed: Optional[float]
+    casual: Optional[int]
+    registered: Optional[int]
 
 
 class MultipleDataInputs(BaseModel):

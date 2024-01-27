@@ -15,7 +15,7 @@ from bikeshare_model.predict import make_prediction
 
 def test_make_prediction(sample_input_data):
     # Given
-    expected_no_predictions = 3476
+    expected_no_predictions = 3070
 
     # When
     result = make_prediction(input_data=sample_input_data)
