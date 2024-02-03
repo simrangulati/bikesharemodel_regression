@@ -18,27 +18,41 @@ from bikeshare_model.processing.validation import validate_inputs
 pipeline_file_name = f"{config.app_config.pipeline_save_file}{_version}.pkl"
 bikeshare_pipe = load_pipeline(file_name=pipeline_file_name)
 
-
-def make_prediction(*, input_data: Union[pd.DataFrame, dict]) -> dict:
-    """Make a prediction using a saved model"""
-
+# <<<<<<< HEAD
+#
+# def make_prediction(*, input_data: Union[pd.DataFrame, dict]) -> dict:
+#     """Make a prediction using a saved model"""
+#
+#     validated_data, errors = validate_inputs(input_df=pd.DataFrame(input_data))
+#
+#     # validated_data=validated_data.reindex(columns=['Pclass','Sex','Age','Fare', 'Embarked','FamilySize','Has_cabin','Title'])
+#     validated_data = validated_data.reindex(columns=config.model_config.features)
+#     print(validated_data)
+#     results = {"predictions": None, "version": _version, "errors": errors}
+#
+#     predictions = bikeshare_pipe.predict(validated_data)
+#
+#     results = {"predictions": predictions, "version": _version, "errors": errors}
+#     print(results)
+# =======
+def make_prediction(*,input_data:Union[pd.DataFrame, dict]) -> dict:
+    """Make a prediction using a saved model """
     validated_data, errors = validate_inputs(input_df=pd.DataFrame(input_data))
-
-    # validated_data=validated_data.reindex(columns=['Pclass','Sex','Age','Fare', 'Embarked','FamilySize','Has_cabin','Title'])
-    validated_data = validated_data.reindex(columns=config.model_config.features)
-    print(validated_data)
-    results = {"predictions": None, "version": _version, "errors": errors}
-
+    #validated_data=validated_data.reindex(columns=['Pclass','Sex','Age','Fare', 'Embarked','FamilySize','Has_cabin','Title'])
+    validated_data=validated_data.reindex(columns=config.model_config.features)
+    print(f"Validated data--\n{validated_data}")
+    # results = {"predictions": None, "version": _version, "errors": errors}
     predictions = bikeshare_pipe.predict(validated_data)
+    results = {"predictions": predictions,"version": _version, "errors": errors}
+    print(f"Results---\n{results}")
 
-    results = {"predictions": predictions, "version": _version, "errors": errors}
-    print(results)
     if not errors:
-
         predictions = bikeshare_pipe.predict(validated_data)
         results = {"predictions": predictions, "version": _version, "errors": errors}
         # print(results)
 
+        # results = {"predictions": predictions,"version": _version, "errors": errors}
+        #print(results)
     return results
 
 

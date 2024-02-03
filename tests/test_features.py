@@ -17,6 +17,7 @@ from bikeshare_model.processing.features import *
 #     print(sample_input_data.head(2))
 #     df = get_year_and_month(sample_input_data)
 #     assert np.isnan(df['yr'])
+#     # assert np.isnan(df['yr'])
 #     assert np.isnan(df['mnth'])
 
 def test_WeekdayOneHotEncoder(sample_input_data):
