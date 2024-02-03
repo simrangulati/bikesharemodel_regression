@@ -44,7 +44,7 @@ jobs:
     - name: Install dependencies
       run: pip install -r requirements/test_requirements.txt
     - name: Test with pytest
-      run: pytest
+      run: pytest tests
 
   build:
     needs: [train, test]
